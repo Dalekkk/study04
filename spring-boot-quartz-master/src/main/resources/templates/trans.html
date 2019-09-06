@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center>
+    <h1>中英文翻译</h1>
+    </hr>
+    <form action="Translator" method="post" style="font-size: 18px;">
+        <span>请输入要翻译的中英文:</span>
+        <input type="text" name="word" />
+        <input type="submit" value="翻译">
+    </form>
+    <div >
+        <font color="red" style="font-size: 16px;float: left;">翻译结果:</font><br/>
+        <span th:text="${infor}" style="font-size: 16px;float: left;"></span>
+    </div>
+</center>
+</body>
+</html>

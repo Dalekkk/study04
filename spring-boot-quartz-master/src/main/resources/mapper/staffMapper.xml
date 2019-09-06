@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzx.mapper.staffMapper">
+  <resultMap id="BaseResultMap" type="com.wzx.dao.staff">
+    <constructor>
+      <idArg column="usercode" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="username" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="department" javaType="java.lang.String" jdbcType="CHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    usercode, username, department
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from staff
+    where usercode = #{usercode,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select *
+    from staff
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from staff
+    where usercode = #{usercode,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wzx.dao.staff">
+    insert into staff (usercode, username, department
+      )
+    values (#{usercode,jdbcType=CHAR}, #{username,jdbcType=CHAR}, #{department,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzx.dao.staff">
+    insert into staff
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="usercode != null">
+        usercode,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="usercode != null">
+        #{usercode,jdbcType=CHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzx.dao.staff">
+    update staff
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=CHAR},
+      </if>
+    </set>
+    where usercode = #{usercode,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzx.dao.staff">
+    update staff
+    set username = #{username,jdbcType=CHAR},
+      department = #{department,jdbcType=CHAR}
+    where usercode = #{usercode,jdbcType=CHAR}
+  </update>
+</mapper>
